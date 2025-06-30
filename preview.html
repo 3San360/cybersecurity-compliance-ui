@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersecurity Compliance UI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8fafc;
+            color: #1a202c;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        h1 {
+            color: #4f46e5;
+            margin-bottom: 0.5rem;
+        }
+        
+        .status {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .status-card {
+            padding: 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            background: #f8fafc;
+        }
+        
+        .status-label {
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 0.5rem;
+        }
+        
+        .status-value {
+            font-size: 1.125rem;
+            color: #2d3748;
+        }
+        
+        .ready {
+            color: #059669;
+        }
+        
+        .pending {
+            color: #d97706;
+        }
+        
+        .instructions {
+            background: #e0f2fe;
+            border: 1px solid #0284c7;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .instructions h2 {
+            color: #0284c7;
+            margin-bottom: 1rem;
+        }
+        
+        .instructions ol {
+            margin-left: 1.5rem;
+        }
+        
+        .instructions li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .feature {
+            text-align: center;
+            padding: 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .feature-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .feature-desc {
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔒 Cybersecurity Compliance UI</h1>
+            <p>Angular 18 Frontend for MCP-based Compliance Chatbot</p>
+        </div>
+        
+        <div class="status">
+            <div class="status-card">
+                <div class="status-label">Frontend Status</div>
+                <div class="status-value ready">✅ Ready</div>
+            </div>
+            <div class="status-card">
+                <div class="status-label">Backend Status</div>
+                <div class="status-value pending">⏳ Start Required</div>
+            </div>
+            <div class="status-card">
+                <div class="status-label">Ollama LLM</div>
+                <div class="status-value ready">✅ llama3.2:3b</div>
+            </div>
+        </div>
+        
+        <div class="instructions">
+            <h2>🚀 Quick Start Instructions</h2>
+            <ol>
+                <li><strong>Start Backend:</strong> Navigate to the parent directory and run <code>npm start</code></li>
+                <li><strong>Start Frontend:</strong> Run <code>ng serve</code> in this Angular project directory</li>
+                <li><strong>Access Application:</strong> Open <code>http://localhost:4200</code> in your browser</li>
+                <li><strong>Begin Chatting:</strong> Select an agent (Auditor, Reviewer, or Manager) and start interacting</li>
+            </ol>
+        </div>
+        
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">🔍</div>
+                <div class="feature-title">Security Auditor</div>
+                <div class="feature-desc">Reviews evidence and validates compliance</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📋</div>
+                <div class="feature-title">Compliance Reviewer</div>
+                <div class="feature-desc">Approves processes and policies</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">👔</div>
+                <div class="feature-title">Compliance Manager</div>
+                <div class="feature-desc">Oversees strategy and reporting</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📎</div>
+                <div class="feature-title">File Upload</div>
+                <div class="feature-desc">Drag-and-drop evidence documents</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <div class="feature-title">Quick Actions</div>
+                <div class="feature-desc">Predefined compliance tasks</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🔔</div>
+                <div class="feature-title">Real-time Updates</div>
+                <div class="feature-desc">SSE notifications for alerts</div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Check backend status
+        fetch('http://localhost:3000/health')
+            .then(response => response.json())
+            .then(data => {
+                const backendStatus = document.querySelector('.status-card:nth-child(2) .status-value');
+                backendStatus.textContent = '✅ ' + data.status;
+                backendStatus.className = 'status-value ready';
+            })
+            .catch(error => {
+                console.log('Backend not running - this is expected until you start it');
+            });
+    </script>
+</body>
+</html>
